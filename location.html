@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Геолокация</title>
+</head>
+<body>
+  <h2>Определение местоположения</h2>
+  <button onclick="getLocation()">Определить</button>
+  <p id="result"></p>
+
+  <script>
+    function getLocation() {
+      if (!navigator.geolocation) {
+        document.getElementById("result").innerText = "Геолокация не поддерживается";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          document.getElementById("result").innerText =
+            "Широта: " + pos.coords.latitude +
+            ", Долгота: " + pos.coords.longitude;
+        },
+        err => {
+          document.getElementById("result").innerText = "Доступ не разрешён";
+        }
+      );
+    }
+  </script>
+</body>
+</html>
